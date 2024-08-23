@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[1]:
 
 
 import pandas as pd
@@ -29,7 +29,7 @@ import sys
 import yfinance as yf
 
 
-# In[ ]:
+# In[2]:
 
 
 #NOCT = Number of Companies taken
@@ -46,7 +46,7 @@ def Gainers(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -54,8 +54,13 @@ def Gainers(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -98,7 +103,7 @@ def Gainers(NOCT, info):
 Gainers(1, 'Close')
 
 
-# In[ ]:
+# In[3]:
 
 
 def Gainers6M(NOCT, info):
@@ -114,7 +119,7 @@ def Gainers6M(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -122,8 +127,13 @@ def Gainers6M(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -167,7 +177,7 @@ def Gainers6M(NOCT, info):
 Gainers6M(1, 'Close')
 
 
-# In[ ]:
+# In[4]:
 
 
 def Actives(NOCT, info):
@@ -183,7 +193,7 @@ def Actives(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -191,8 +201,13 @@ def Actives(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -235,7 +250,7 @@ def Actives(NOCT, info):
 Actives(1, 'Close')
 
 
-# In[ ]:
+# In[5]:
 
 
 def Actives6M(NOCT, info):
@@ -251,7 +266,7 @@ def Actives6M(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -259,8 +274,13 @@ def Actives6M(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -305,7 +325,7 @@ def Actives6M(NOCT, info):
 Actives6M(1, 'Close')
 
 
-# In[ ]:
+# In[6]:
 
 
 def TopETFs(NOCT, info):
@@ -321,7 +341,7 @@ def TopETFs(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -329,8 +349,13 @@ def TopETFs(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -371,7 +396,7 @@ def TopETFs(NOCT, info):
 TopETFs(1, 'Close')
 
 
-# In[ ]:
+# In[7]:
 
 
 def TopETFs6M(NOCT, info):
@@ -387,7 +412,7 @@ def TopETFs6M(NOCT, info):
         return
     
     soup = BeautifulSoup(response.text, 'lxml')
-    rows = soup.find_all('tr', class_='simpTblRow')
+    rows = soup.find_all('tr', class_='row')
     
     if not rows:
         print("No data found")
@@ -395,8 +420,13 @@ def TopETFs6M(NOCT, info):
     
     symbols = []
     for row in rows[:NOCT]:
-        symbol = row.find('td', {'aria-label': 'Symbol'}).text.strip()
-        symbols.append(symbol)
+        try:
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
     
     print(symbols)
     
@@ -439,7 +469,7 @@ def TopETFs6M(NOCT, info):
 TopETFs6M(1, 'Close')
 
 
-# In[ ]:
+# In[8]:
 
 
 # timeframe must be one of these: '1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'
@@ -500,7 +530,7 @@ companies = ['ICF', 'AAPL']
 #get_companies_info_with_graphs(companies, '6mo')
 
 
-# In[ ]:
+# In[9]:
 
 
 def Gain_finder(NOCT):
@@ -546,7 +576,7 @@ def Gain_finder(NOCT):
 Gain_finder(5)
 
 
-# In[ ]:
+# In[10]:
 
 
 def active_finder(NOCT):
@@ -592,7 +622,7 @@ def active_finder(NOCT):
 active_finder(5)
 
 
-# In[ ]:
+# In[11]:
 
 
 def TopETF_finder(NOCT):
@@ -637,7 +667,7 @@ def TopETF_finder(NOCT):
 TopETF_finder(5)
 
 
-# In[ ]:
+# In[12]:
 
 
 def loser_finder(NOCT):
@@ -683,7 +713,7 @@ def loser_finder(NOCT):
 loser_finder(5)
 
 
-# In[ ]:
+# In[13]:
 
 
 def get_company_info(companyCode):
@@ -764,10 +794,85 @@ print("\nEarnings Dates:")
 print(company_info['earnings_dates'])
 
 
-# In[ ]:
+# In[14]:
 
 
+import requests
+from bs4 import BeautifulSoup
+import yfinance as yf
+import matplotlib.pyplot as plt
 
+# NOCT = Number of Companies taken
+def Gainers(NOCT, info):
+    url = "https://finance.yahoo.com/markets/stocks/gainers"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36"
+    }
+    
+    response = requests.get(url, headers=headers)
+    
+    if response.status_code == 404:
+        print(f"Failed to retrieve data: {response.status_code}")
+        return
+    
+    soup = BeautifulSoup(response.text, 'lxml')
+    rows = soup.find_all('tr', class_='row')
+    
+    if not rows:
+        print("No data found")
+        return
+    
+    symbols = []
+    for row in rows[:NOCT]:
+        try:
+            
+            symbol = row.find('span', class_='symbol').text.strip()
+            company_name = row.find('span', class_='longName').text.strip()
+            print(f"Extracted Symbol: {symbol}, Company Name: {company_name}")
+            symbols.append(symbol)
+        except AttributeError:
+            print("Failed to extract symbol or company name for this row. Skipping.")
+    
+    if not symbols:
+        print("No symbols extracted.")
+        return
+    
+    for name in symbols:
+        ticker = yf.Ticker(name)
+        try:
+            cmpnme = ticker.info.get('shortName', 'N/A')
+            comp_df = ticker.history(period="max")
+            
+            print('Short Name:', ticker.info.get('shortName', 'N/A'))
+            print('Long Name:', ticker.info.get('longName', 'N/A'))
+            print('Sector:', ticker.info.get('sector', 'N/A'))
+            print('Industry:', ticker.info.get('industry', 'N/A'))
+            print('Previous Close:', ticker.info.get('previousClose', 'N/A'))
+            print('TwoHundred Day Average:', ticker.info.get('twoHundredDayAverage', 'N/A'))
+            print('Fifty Day Average:', ticker.info.get('fiftyDayAverage', 'N/A'))
+            print('Volume:', ticker.info.get('volume', 'N/A'))
+            
+            print(f"{cmpnme}'s stock price")
+            
+            if not comp_df.empty and info in comp_df.columns:
+                comp_df[info].plot(title=f"{cmpnme}'s stock price")
+                plt.xlabel("Date")
+                plt.ylabel(info)
+                plt.grid()
+                plt.rcParams.update({'font.size': 14})
+                plt.style.use('seaborn-dark')
+                plt.rcParams["figure.figsize"] = (10, 6)
+                plt.show()
+                print(comp_df[info])
+            else:
+                print("No data available for plotting.")
+                
+        except KeyError as ke:
+            print(f"Key error processing {name}: {ke}")
+        except Exception as e:
+            print(f"Error processing {name}: {e}")
+
+Gainers(5, 'Close')
 
 
 # In[ ]:
